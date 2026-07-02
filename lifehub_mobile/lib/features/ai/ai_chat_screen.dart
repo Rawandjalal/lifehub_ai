@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme.dart';
+import '../../core/network_service.dart';
 
 class AiChatScreen extends StatefulWidget {
   const AiChatScreen({super.key});
@@ -17,26 +18,37 @@ class _AiChatScreenState extends State<AiChatScreen> {
     }
   ];
 
-  void _sendMessage() {
+  Future<void> _sendMessage() async {
     if (_controller.text.trim().isEmpty) return;
 
+    final userPrompt = _controller.text.trim();
     setState(() {
       _messages.add({
         'role': 'user',
-        'text': _controller.text.trim(),
+        'text': userPrompt,
       });
-      final userPrompt = _controller.text.trim();
       _controller.clear();
+    });
 
-      // Simulate AI response
-      Future.delayed(const Duration(milliseconds: 800), () {
-        setState(() {
-          _messages.add({
-            'role': 'ai',
-            'text': 'I processed: "$userPrompt". Connecting to LifeHub Core backend to analyze...',
-          });
+    // Make API Call
+    final result = await NetworkService.post('/Chat/message', {
+      'UserId': 1,
+      'Message': userPrompt,
+    });
+
+    setState(() {
+      if (result != null && result.containsKey('response')) {
+        _messages.add({
+          'role': 'ai',
+          'text': result['response'] as String,
         });
-      });
+      } else {
+        // Fallback mock response if server offline
+        _messages.add({
+          'role': 'ai',
+          'text': 'Offline Fallback: I processed your request: "$userPrompt". Start the ASP.NET Core API backend to connect live!',
+        });
+      }
     });
   }
 
