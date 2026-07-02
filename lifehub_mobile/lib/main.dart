@@ -8,6 +8,12 @@ import 'features/tasks/tasks_screen.dart';
 import 'features/habits/habits_screen.dart';
 import 'features/fitness/fitness_screen.dart';
 import 'features/menu/all_modules_screen.dart';
+import 'features/calendar/calendar_screen.dart';
+import 'features/study/study_screen.dart';
+import 'features/password/password_screen.dart';
+import 'features/translation/translation_screen.dart';
+import 'features/camera/camera_screen.dart';
+import 'features/chat/chat_room_screen.dart';
 
 void main() {
   runApp(const LifeHubApp());
@@ -54,7 +60,13 @@ class _MainHubScreenState extends State<MainHubScreen> {
       const NotesScreen(),
       const HabitsScreen(),
       const FitnessScreen(),
-      AllModulesScreen(),
+      AllModulesScreen(onModuleSelected: _setPage), // Index 7
+      const CalendarScreen(), // Index 8
+      const StudyScreen(), // Index 9
+      const PasswordScreen(), // Index 10
+      const TranslationScreen(), // Index 11
+      const CameraScreen(), // Index 12
+      const ChatRoomScreen(), // Index 13
     ];
   }
 
@@ -75,7 +87,6 @@ class _MainHubScreenState extends State<MainHubScreen> {
         selectedIndex: _currentIndex > 4 ? 4 : _currentIndex,
         onDestinationSelected: (index) {
           if (index == 4) {
-            // Show modular grid or selection sheet
             _setPage(7); // Jump to All Modules screen
           } else {
             _setPage(index);
@@ -141,6 +152,12 @@ class _MainHubScreenState extends State<MainHubScreen> {
             _buildDrawerItem(Icons.trending_up, 'Habits', 5),
             _buildDrawerItem(Icons.directions_run, 'Fitness', 6),
             _buildDrawerItem(Icons.grid_view, 'All Modules', 7),
+            _buildDrawerItem(Icons.calendar_month, 'Calendar', 8),
+            _buildDrawerItem(Icons.menu_book, 'Study Tools', 9),
+            _buildDrawerItem(Icons.lock, 'Password Safe', 10),
+            _buildDrawerItem(Icons.translate, 'Translation', 11),
+            _buildDrawerItem(Icons.photo_camera, 'AI Camera', 12),
+            _buildDrawerItem(Icons.chat, 'Chat Room', 13),
           ],
         ),
       ),

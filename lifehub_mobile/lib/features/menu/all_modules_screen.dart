@@ -2,25 +2,27 @@ import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 
 class AllModulesScreen extends StatelessWidget {
+  final Function(int) onModuleSelected;
+
   final List<Map<String, dynamic>> modules = [
-    {'name': 'AI Assistant', 'icon': Icons.smart_toy, 'status': 'Active', 'color': AppTheme.accentBlue},
-    {'name': 'Finance', 'icon': Icons.account_balance_wallet, 'status': 'Active', 'color': AppTheme.accentGreen},
-    {'name': 'Calendar', 'icon': Icons.calendar_month, 'status': 'Beta', 'color': AppTheme.accentYellow},
-    {'name': 'Notes', 'icon': Icons.note, 'status': 'Active', 'color': Colors.purple},
-    {'name': 'To-do lists', 'icon': Icons.check_box, 'status': 'Active', 'color': Colors.orange},
-    {'name': 'Habits', 'icon': Icons.trending_up, 'status': 'Active', 'color': Colors.teal},
-    {'name': 'Fitness', 'icon': Icons.directions_run, 'status': 'Active', 'color': Colors.pink},
-    {'name': 'Study tools', 'icon': Icons.menu_book, 'status': 'Coming Soon', 'color': Colors.blueGrey},
-    {'name': 'Chat Room', 'icon': Icons.chat, 'status': 'Coming Soon', 'color': Colors.cyan},
-    {'name': 'Cloud Storage', 'icon': Icons.cloud, 'status': 'Coming Soon', 'color': Colors.indigo},
-    {'name': 'Password Safe', 'icon': Icons.lock, 'status': 'Coming Soon', 'color': AppTheme.accentRed},
-    {'name': 'Translation', 'icon': Icons.translate, 'status': 'Coming Soon', 'color': Colors.lime},
-    {'name': 'PDF Scanner', 'icon': Icons.document_scanner, 'status': 'Coming Soon', 'color': Colors.deepOrange},
-    {'name': 'Voice Assist', 'icon': Icons.mic, 'status': 'Coming Soon', 'color': Colors.amber},
-    {'name': 'AI Camera', 'icon': Icons.photo_camera, 'status': 'Coming Soon', 'color': Colors.redAccent},
+    {'name': 'AI Assistant', 'icon': Icons.smart_toy, 'status': 'Active', 'color': AppTheme.accentBlue, 'pageIndex': 1},
+    {'name': 'Finance', 'icon': Icons.account_balance_wallet, 'status': 'Active', 'color': AppTheme.accentGreen, 'pageIndex': 2},
+    {'name': 'Calendar', 'icon': Icons.calendar_month, 'status': 'Active', 'color': AppTheme.accentYellow, 'pageIndex': 8},
+    {'name': 'Notes', 'icon': Icons.note, 'status': 'Active', 'color': Colors.purple, 'pageIndex': 4},
+    {'name': 'To-do lists', 'icon': Icons.check_box, 'status': 'Active', 'color': Colors.orange, 'pageIndex': 3},
+    {'name': 'Habits', 'icon': Icons.trending_up, 'status': 'Active', 'color': Colors.teal, 'pageIndex': 5},
+    {'name': 'Fitness', 'icon': Icons.directions_run, 'status': 'Active', 'color': Colors.pink, 'pageIndex': 6},
+    {'name': 'Study tools', 'icon': Icons.menu_book, 'status': 'Active', 'color': Colors.blueGrey, 'pageIndex': 9},
+    {'name': 'Chat Room', 'icon': Icons.chat, 'status': 'Active', 'color': Colors.cyan, 'pageIndex': 13},
+    {'name': 'Password Safe', 'icon': Icons.lock, 'status': 'Active', 'color': AppTheme.accentRed, 'pageIndex': 10},
+    {'name': 'Translation', 'icon': Icons.translate, 'status': 'Active', 'color': Colors.lime, 'pageIndex': 11},
+    {'name': 'AI Camera', 'icon': Icons.photo_camera, 'status': 'Active', 'color': Colors.redAccent, 'pageIndex': 12},
+    {'name': 'Cloud Storage', 'icon': Icons.cloud, 'status': 'Coming Soon', 'color': Colors.indigo, 'pageIndex': 7},
+    {'name': 'Voice Assist', 'icon': Icons.mic, 'status': 'Coming Soon', 'color': Colors.amber, 'pageIndex': 7},
+    {'name': 'PDF Scanner', 'icon': Icons.document_scanner, 'status': 'Coming Soon', 'color': Colors.deepOrange, 'pageIndex': 7},
   ];
 
-  AllModulesScreen({super.key});
+  AllModulesScreen({super.key, required this.onModuleSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +47,11 @@ class AllModulesScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppTheme.surface,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white.withOpacity(0.04)),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.04)),
             ),
             child: InkWell(
               borderRadius: BorderRadius.circular(16),
-              onTap: isReady
-                  ? () {
-                      // Handled by parent controller
-                    }
-                  : null,
+              onTap: isReady ? () => onModuleSelected(mod['pageIndex'] as int) : null,
               child: Opacity(
                 opacity: isReady ? 1.0 : 0.4,
                 child: Column(
