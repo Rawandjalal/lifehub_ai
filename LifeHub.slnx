@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/lifehub_api/">
+    <Project Path="lifehub_api/LifeHub.Api.csproj" />
+  </Folder>
+</Solution>
