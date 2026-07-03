@@ -17,9 +17,9 @@ class AllModulesScreen extends StatelessWidget {
     {'name': 'Password Safe', 'icon': Icons.lock, 'status': 'Active', 'color': AppTheme.accentRed, 'pageIndex': 10},
     {'name': 'Translation', 'icon': Icons.translate, 'status': 'Active', 'color': Colors.lime, 'pageIndex': 11},
     {'name': 'AI Camera', 'icon': Icons.photo_camera, 'status': 'Active', 'color': Colors.redAccent, 'pageIndex': 12},
-    {'name': 'Cloud Storage', 'icon': Icons.cloud, 'status': 'Coming Soon', 'color': Colors.indigo, 'pageIndex': 7},
-    {'name': 'Voice Assist', 'icon': Icons.mic, 'status': 'Coming Soon', 'color': Colors.amber, 'pageIndex': 7},
-    {'name': 'PDF Scanner', 'icon': Icons.document_scanner, 'status': 'Coming Soon', 'color': Colors.deepOrange, 'pageIndex': 7},
+    {'name': 'Cloud Storage', 'icon': Icons.cloud, 'status': 'Active', 'color': Colors.indigo, 'pageIndex': 14},
+    {'name': 'Voice Assist', 'icon': Icons.mic, 'status': 'Active', 'color': Colors.amber, 'pageIndex': 15},
+    {'name': 'PDF Scanner', 'icon': Icons.document_scanner, 'status': 'Active', 'color': Colors.deepOrange, 'pageIndex': 16},
   ];
 
   AllModulesScreen({super.key, required this.onModuleSelected});

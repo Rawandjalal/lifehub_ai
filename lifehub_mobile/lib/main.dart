@@ -14,6 +14,9 @@ import 'features/password/password_screen.dart';
 import 'features/translation/translation_screen.dart';
 import 'features/camera/camera_screen.dart';
 import 'features/chat/chat_room_screen.dart';
+import 'features/storage/storage_screen.dart';
+import 'features/voice/voice_screen.dart';
+import 'features/scanner/scanner_screen.dart';
 
 void main() {
   runApp(const LifeHubApp());
@@ -67,6 +70,9 @@ class _MainHubScreenState extends State<MainHubScreen> {
       const TranslationScreen(), // Index 11
       const CameraScreen(), // Index 12
       const ChatRoomScreen(), // Index 13
+      const StorageScreen(), // Index 14
+      const VoiceScreen(), // Index 15
+      const ScannerScreen(), // Index 16
     ];
   }
 
@@ -158,6 +164,9 @@ class _MainHubScreenState extends State<MainHubScreen> {
             _buildDrawerItem(Icons.translate, 'Translation', 11),
             _buildDrawerItem(Icons.photo_camera, 'AI Camera', 12),
             _buildDrawerItem(Icons.chat, 'Chat Room', 13),
+            _buildDrawerItem(Icons.cloud, 'Cloud Storage', 14),
+            _buildDrawerItem(Icons.mic, 'Voice Assistant', 15),
+            _buildDrawerItem(Icons.document_scanner, 'PDF Scanner', 16),
           ],
         ),
       ),
